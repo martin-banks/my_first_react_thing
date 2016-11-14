@@ -51,7 +51,7 @@
 
 	var App = __webpack_require__(172);
 
-	ReactDOM.render(React.createElement(App, null), document.getEelementById('app'));
+	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -21428,14 +21428,39 @@
 
 	var React = __webpack_require__(1);
 
-	var App = React.createClass({
-		displayName: 'App',
+	var Par = React.createClass({
+		displayName: 'Par',
+
+		render: function render() {
+			return React.createElement(
+				'p',
+				null,
+				'Some text in here blah blah lbha'
+			);
+		}
+	});
+
+	var H1 = React.createClass({
+		displayName: 'H1',
 
 		render: function render() {
 			return React.createElement(
 				'h1',
 				null,
-				'Hello world'
+				'Hello World'
+			);
+		}
+	});
+
+	var App = React.createClass({
+		displayName: 'App',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(H1, null),
+				React.createElement(Par, null)
 			);
 		}
 	});
