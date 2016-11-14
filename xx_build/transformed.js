@@ -21426,65 +21426,31 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var React = __webpack_require__(1);
-	var globalstate = __webpack_require__(173);
 
-	/* es5 copmponent */
 	var Par = React.createClass({
 		displayName: 'Par',
 
-		getInitialState: function getInitialState() {
-			return {
-				intro: globalstate.intro
-			};
-		},
 		render: function render() {
 			return React.createElement(
 				'p',
 				null,
-				this.state.intro
+				'Some text in here blah blah lbha'
 			);
 		}
 	});
 
-	/* es6 component */
+	var H1 = React.createClass({
+		displayName: 'H1',
 
-	var H1 = function (_React$Component) {
-		_inherits(H1, _React$Component);
-
-		function H1() {
-			_classCallCheck(this, H1);
-
-			var _this = _possibleConstructorReturn(this, (H1.__proto__ || Object.getPrototypeOf(H1)).call(this));
-
-			_this.state = {
-				title: globalstate.title
-			};
-			return _this;
+		render: function render() {
+			return React.createElement(
+				'h1',
+				null,
+				'Hello World'
+			);
 		}
-
-		_createClass(H1, [{
-			key: 'render',
-			value: function render() {
-				return React.createElement(
-					'h1',
-					null,
-					'Global title ',
-					this.state.title
-				);
-			}
-		}]);
-
-		return H1;
-	}(React.Component);
+	});
 
 	var App = React.createClass({
 		displayName: 'App',
@@ -21500,17 +21466,6 @@
 	});
 
 	module.exports = App;
-
-/***/ },
-/* 173 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = {
-		title: 'global title',
-		intro: 'global intro Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam cum dolorem quasi, debitis officiis aut amet praesentium temporibus culpa quidem, impedit sint eveniet iure velit iste officia consequuntur ipsam dignissimos.'
-	};
 
 /***/ }
 /******/ ]);
