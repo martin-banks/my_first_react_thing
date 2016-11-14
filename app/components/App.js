@@ -1,16 +1,32 @@
 const React = require('react')
+const globalstate = require('../globalstate')
 
 let Par = React.createClass({
-	render: ()=>{
-		return <p>Some text in here blah blah lbha</p>
+	getInitialState: function(){
+		return {
+			intro: globalstate.intro
+		}
+	},
+	render: function(){
+		return <p>{this.state.intro}</p>
 	}
 })
 
-let H1 = React.createClass({
-	render: ()=>{
-		return <h1>Hello World</h1>
+
+class H1 extends React.Component{
+	constructor(){
+		super()
+		this.state = {
+			title: 	globalstate.title
+		}
 	}
-})
+
+	render(){
+		return <h1>Global title {this.state.title}</h1>
+	} 
+    
+  
+}
 
 
 let App = React.createClass({
