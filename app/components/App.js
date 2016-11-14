@@ -1,6 +1,8 @@
 const React = require('react')
 const globalstate = require('../globalstate')
 
+
+/* es5 copmponent */
 let Par = React.createClass({
 	getInitialState: function(){
 		return {
@@ -12,7 +14,7 @@ let Par = React.createClass({
 	}
 })
 
-
+/* es6 component */
 class H1 extends React.Component{
 	constructor(){
 		super()
@@ -20,12 +22,9 @@ class H1 extends React.Component{
 			title: 	globalstate.title
 		}
 	}
-
 	render(){
 		return <h1>Global title {this.state.title}</h1>
 	} 
-    
-  
 }
 
 
