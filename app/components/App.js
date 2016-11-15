@@ -1,27 +1,37 @@
 const React = require('react')
 const globalstate = require('../globalstate')
+const atoms = require('./atoms')
+
+const Par = atoms.Par
+const Title = atoms.Title
+const CardContainer = atoms.CardContainer
 
 
-/* es5 copmponent */
-let Par = React.createClass({
-	getInitialState: function(){
-		return {
-			intro: globalstate.intro
-		}
-	},
-	render: function(){
-		return <p>{this.state.intro}</p>
-	}
-})
 
 
 
 let App = React.createClass({
+	getInitialState: ()=>{
+		return {
+			title: 'foo',
+			text: 'bar'
+		}
+	},
+	changeText: function(){
+		this.setState(globalstate)
+	},
 	render: function(){
+		console.log(this.state)
 		return (
 			<div>
-				<H1 />
-				<Par />
+				<h1 onClick={this.changeText}>
+					{this.state.title}
+				</h1>
+				<Par 
+					text={this.state.text} 
+					handleclick={this.changeText} 
+				/>
+
 			</div>
 		)
 	}
