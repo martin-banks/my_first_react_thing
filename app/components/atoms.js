@@ -1,3 +1,5 @@
+"use strict"
+
 const React = require('react')
 let globalstate = require('../globalstate')
 
@@ -9,30 +11,68 @@ const seconds = 1000
 
 
 let Title = React.createClass({
-	getInitialState: ()=>{
+	propTypes: {
+		title: React.PropTypes.string.isRequired
+	},
+
+	getInitialState: function(){
 		return {
-			title: globalstate.title
+			title: this.props.title
 		}
 	},
 
 	updateheadline: function(){
 		this.setState({
-			title: 'I changed!'
+			title: `I changed! ${Math.random()}`
 		})
 	},
 
 	render: function(){
 		return <h1 onClick={this.updateheadline}>
-			{this.state.title}
+			{this.props.title}
 		</h1>
 	}
 })
 
 
 
-let Par = React.createClass({
+
+let Crosshead = React.createClass({
 	render: function(){
-		return <p onClick={this.props.handleclick} >{this.props.text}</p>
+		return <h2>I'm a {this.props.title}</h2>
+	}
+})
+
+let Par = React.createClass({
+	propTypes: {
+		text: React.PropTypes.string.isRequired
+	},
+	render: function(){
+		return <p>{this.props.text}</p>
+	}
+})
+
+
+
+let BodyText = React.createClass({
+
+	createPars: function(){
+		return this.props.text.map((par, index)=>{
+			if(typeof par === 'string'){
+				return <Par key={index} onClick={this.props.handleclick} text={par} />
+			
+			} else if (typeof par === 'object'){
+				return Object.keys(par).map(obj=>{
+					if(obj.toLowerCase() === 'crosshead'){
+						return <Crosshead key={index} title={par[obj]} />
+					}
+				})
+				
+			}	
+		})
+	},
+	render: function(){
+		return <div>{this.createPars()}</div>
 	}
 })
 
@@ -54,5 +94,6 @@ let CardContainer = React.createClass({
 module.exports = {
 	CardContainer,
 	Title,
+	BodyText,
 	Par
 }
