@@ -9,6 +9,9 @@ section {
 
 section#editor {
   left: 0; }
+  section#editor div.DraftEditor-root {
+    border: solid 1px #ddd;
+    padding: 16px; }
   section#editor input, section#editor textarea {
     width: 100%;
     height: 40px;
@@ -19,5 +22,24 @@ section#editor {
 
 section#preview {
   right: 0; }
+
+button, .RichEditor-controls {
+  min-width: 40px;
+  text-align: center;
+  line-height: 20px;
+  border: solid 1px #ddd;
+  background: none;
+  margin: 0 8px 8px 0;
+  padding: 16px;
+  font-weight: 400;
+  color: #777;
+  font-size: 14px; }
+
+.superFancyBlockquote {
+  color: #999;
+  font-family: "Hoefler Text", Georgia, serif;
+  font-style: italic;
+  text-align: center;
+  font-size: 40px; }
 
 /*# sourceMappingURL=global.css.map */
