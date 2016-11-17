@@ -3,7 +3,7 @@ body {
   padding: 0; }
 
 section {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 40%;
   padding: 200px 5% 0 5%; }
@@ -36,11 +36,17 @@ button, .RichEditor-controls {
   color: #777;
   font-size: 14px; }
 
-.superFancyBlockquote, .blockquote {
+.superFancyBlockquote {
   color: #999;
   font-family: "Hoefler Text", Georgia, serif;
   font-style: italic;
   text-align: center;
   font-size: 40px; }
+
+.newblockquote {
+  color: darkgrey;
+  background: lightgrey;
+  padding: 32px;
+  border-left: solid 8px grey; }
 
 /*# sourceMappingURL=global.css.map */

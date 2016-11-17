@@ -18,26 +18,26 @@ const BLOCK_TYPES = [
 	{label: 'Code Block', style: 'code-block'},
 ];
 const BlockStyleControls = (props) => {
-  const {editorState} = props;
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
+	const {editorState} = props;
+	const selection = editorState.getSelection();
+	const blockType = editorState
+		.getCurrentContent()
+		.getBlockForKey(selection.getStartKey())
+		.getType();
 
-  return (
-    <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) =>
-        <StyleButton
-          key={type.label}
-          active={type.style === blockType}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      )}
-    </div>
-  );
+	return (
+		<div className="RichEditor-controls">
+			{BLOCK_TYPES.map((type) =>
+				<StyleButton
+					key={type.label}
+					active={type.style === blockType}
+					label={type.label}
+					onToggle={props.onToggle}
+					style={type.style}
+				/>
+			)}
+		</div>
+	);
 };
 // Custom overrides for "HEADER" style.
 const styleMap = {
@@ -53,36 +53,35 @@ const styleMap = {
 
 
 function myBlockStyleFn(contentBlock) {
-  const type = contentBlock.getType();
-  if (type === 'blockquote') {
-    return 'superFancyBlockquote';
-  }
+	const type = contentBlock.getType();
+	if (type === 'blockquote') {
+		return 'superFancyBlockquote';
+	}
 }
 
-
+function handleText(content){
+	return content.map((block, i)=>{
+		let blockType = ()=>{
+			if (block.type === 'blockquote'){
+				return 'superFancyBlockquote'
+			}
+		}
+		return <div className={blockType()} key={block.key}>{block.text}</div>
+	})
+}
 
 
 
 class Previewer extends React.Component {
 	constructor(props){
 		super(props)
-		this.handleText = this.handleText.bind(this)
-
-	}
-
-	handleText(){
-		return this.props.rawdata.blocks.map((block, i)=>{
-			return <p key={i} >{block.text}</p>
-		})
 	}
 
 	render(){
 		return (
 			<section id="preview">
 				<p>Preview</p>
-				{this.props.rawdata.blocks.map((block, i)=>{
-					return <div className={block.type} key={block.key}>{block.text}</div>
-				})}
+				{handleText(this.props.rawdata.blocks)}
 			</section>
 		)
 	}
@@ -125,13 +124,13 @@ class MyEditor extends React.Component {
 	}
 
 	_toggleBlockType(blockType) {
-    this.onChange(
-      RichUtils.toggleBlockType(
-        this.state.editorState,
-        blockType
-      )
-    );
-  }
+		this.onChange(
+			RichUtils.toggleBlockType(
+				this.state.editorState,
+				blockType
+			)
+		);
+	}
 
 
 	render() {
@@ -227,6 +226,6 @@ module.exports = MyEditor
 
 
 export type RawDraftContentState = {
-  blocks: Array<RawDraftContentBlock>,
-  entityMap: {[key: string]: RawDraftEntity},
+	blocks: Array<RawDraftContentBlock>,
+	entityMap: {[key: string]: RawDraftEntity},
 };

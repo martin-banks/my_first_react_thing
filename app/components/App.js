@@ -11,7 +11,8 @@ const TextInput = require('./userInput/TextInput').TextInput
 const TextArea = require('./userInput/TextInput').TextArea
 
 import MyEditor from './Editor'
-import PreviewEditor from './PreviewEditor'
+import immutable from 'immutable'
+import MediaEditorExample from './MediaEditor'
 
 
 /*
@@ -83,6 +84,8 @@ let App = React.createClass({
 				<section id="editor">
 					<MyEditor />
 				</section>
+
+				<MediaEditorExample />
 
 			</div>
 		)
