@@ -59,6 +59,35 @@ function myBlockStyleFn(contentBlock) {
   }
 }
 
+
+
+
+
+class Previewer extends React.Component {
+	constructor(props){
+		super(props)
+		this.handleText = this.handleText.bind(this)
+
+	}
+
+	handleText(){
+		return this.props.rawdata.blocks.map((block, i)=>{
+			return <p key={i} >{block.text}</p>
+		})
+	}
+
+	render(){
+		return (
+			<section id="preview">
+				<p>Preview</p>
+				{this.props.rawdata.blocks.map((block, i)=>{
+					return <div className={block.type} key={block.key}>{block.text}</div>
+				})}
+			</section>
+		)
+	}
+}
+
 	
 
 class MyEditor extends React.Component {
@@ -78,15 +107,12 @@ class MyEditor extends React.Component {
 		return 'not-handled'
 	}
 
-
-
 	_onBoldClick(){
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'))
 	}
 	_onItalicClick(){
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
 	}
-
 	_onHeaderClick(){
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HEADER'))
 	}
@@ -98,9 +124,7 @@ class MyEditor extends React.Component {
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle));
 	}
 
-	
 	_toggleBlockType(blockType) {
-
     this.onChange(
       RichUtils.toggleBlockType(
         this.state.editorState,
@@ -110,20 +134,18 @@ class MyEditor extends React.Component {
   }
 
 
-	
-	
-
 	render() {
 		const {editorState} = this.state;
 		let cnv = convertToRaw(editorState.getCurrentContent())
-		console.log(cnv)
+		/*console.log(cnv)*/
 		
 		return (
 			<div>
+				<p>Inline styles</p>
 				<button onClick = {this._onBoldClick.bind(this)}>B</button>
 				<button onClick = {this._onItalicClick.bind(this)}>I</button>
 				<br/>
-				
+				<p>Block styles</p>
 				<BlockStyleControls
 					editorState={editorState}
 					onToggle={this._toggleBlockType.bind(this)}
@@ -135,7 +157,10 @@ class MyEditor extends React.Component {
 					editorState={editorState} 
 					handleKeyCommand = {this.handleKeyCommand}
 					onChange={this.onChange} 
+					placeholder = 'Write something'
+					readOnly = {false}
 				/>
+				<Previewer rawdata={cnv} />
 			</div>
 		)
 

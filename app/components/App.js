@@ -11,6 +11,7 @@ const TextInput = require('./userInput/TextInput').TextInput
 const TextArea = require('./userInput/TextInput').TextArea
 
 import MyEditor from './Editor'
+import PreviewEditor from './PreviewEditor'
 
 
 /*
@@ -83,10 +84,6 @@ let App = React.createClass({
 					<MyEditor />
 				</section>
 
-				<section id="preview">
-					<Title title={this.state.title} />
-					<Par  text={this.state.text} />
-				</section>
 			</div>
 		)
 		return <div>{contentToRender}</div>
@@ -95,3 +92,12 @@ let App = React.createClass({
 
 
 module.exports = App
+
+
+/*
+<section id="preview">
+	<Title title={this.state.title} />
+	<Par  text={this.state.text} />
+</section>
+
+*/

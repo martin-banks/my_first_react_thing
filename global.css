@@ -4,6 +4,7 @@ body {
 
 section {
   position: fixed;
+  top: 0;
   width: 40%;
   padding: 200px 5% 0 5%; }
 
@@ -35,7 +36,7 @@ button, .RichEditor-controls {
   color: #777;
   font-size: 14px; }
 
-.superFancyBlockquote {
+.superFancyBlockquote, .blockquote {
   color: #999;
   font-family: "Hoefler Text", Georgia, serif;
   font-style: italic;
