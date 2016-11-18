@@ -9,6 +9,7 @@ ReactDOM.render(
 	document.getElementById('app')
 )
 
+
 import {Editor, EditorState, RichUtils, stateToHTML, convertToRaw, convertFromRaw } from 'draft-js'
 
 import type {RawDraftContentBlock} from 'RawDraftContentBlock';
